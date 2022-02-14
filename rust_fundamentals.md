@@ -1,12 +1,10 @@
-<link rel="stylesheet" type="text/css" href="assets/style.css">
-
 # Rust Fundamentals
 ### By Edward Curren on Pluralsight
 **Released on Jan 25th 2022**
 ### Notes by Giovanni G. D'Amico
 
 ## Index
-<img id="decor" src="assets/decor.png">
+<img id="decor" src="assets/decor.png" style='max-width: 30%;'>
 
 - [0-0](#personal-forward) **Personal Forward**
 - [1-0](#introduction--setup) **Introduction & Setup**
@@ -80,16 +78,16 @@
 - [13-0](#conclusion) Conclusion
 
 ## **Personal Forward**
-[<img id="undo" src="assets/undo_flat.png">](#index)
-<img id="decor" src="assets/decor.png">
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
+<img id="decor" src="assets/decor.png" style='max-width: 30%;'>
 
 Hey just wanted to jut in, Im very happy that Pluralsight has finally decided to host a video on rust. I was surprised to see the upload and got very excited to dip my toes once again into rust. When I initially tried to learn, I was almost exclusively using the documentation. To be honest, the documentation wasn't bad but I felt kinda alone trying to figure things out.
 
 If I have my own 2 cents on anything i'll preface it with an "**MHZ**:" obviously most of this is based on the video by Edward Curren so I want to preserve his intake throughout this document.
 
 ## **Introduction & Setup** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
-<img id="decor" src="assets/decor.png">
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
+<img id="decor" src="assets/decor.png" style='max-width: 30%;'>
 
 The Two Questions we ask ourselves when learning something new:
 1. What is this?
@@ -120,7 +118,7 @@ To answer the first on behalf of Rust, Rust is a language that is built on Safet
 
 
 ### **The Project** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 Throughout the Video we will be working on a number of projects to help better understand the material
 
@@ -132,7 +130,7 @@ The Premise behind the Projects:
   They have hired us to create an application that will caluclate the great circle route distance between two airports.
 
 ### **Development Environment Setup** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 **MHZ**: I already have rust installed so im mostly gonna just glance through this.
 
@@ -154,7 +152,7 @@ link to installation is [here](https://jetbrains.com/idea/download)
 Finally you can also use the rust playground if you want something closer to a Repl [here](https://play.rust-lang.org)
 
 ### **Anatomy of a Rust Program** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 Every program will have an entry point and for rust that will be the `main()` function.
   - `fn` is used to define a function.
@@ -187,348 +185,411 @@ Hello, world!
 ```
 
 ### **Static vs Dynamic and Compiled vs Interpreted** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
-wex quas exort
+<img src='assets/r_fund1.png' style='max-width:30%;'>
+
+this graph here helps better understand the comparisons between languages
+
+- a statically typed language is where we know the types of the data at compile time.
+- on the latter end, a dynamically typed language is one where the data is not concluded on until runtime. additionally a variable can hold any time of value until runtime.
+- strong typing enforces rules on data type assignments.
+- a weakly typed or loosely type language has no strong rules on what typing a variable has.
+
+to better understand this, im going to go with an object oriented concept called inheritance.
+
+<img src='assets/r_fund2.png' style='max-width:30%;'>
+
+in this case:
+- we have a grouptype called `Animal`, which can eat and sleep.
+- then we have `Duck`, which can eat and sleep but also quack and swim.
+- and finally we have `Dog`, which can also eat and sleep but can also run and jump.
+
+IF we have a variable that has been assigned the type of `Animal`, then it is probably fine to also assign it one of its child types, like `Duck` or `Dog`, depending on what fits best.
+
+However, this would not work in the inverse, you can't just assign a variable as a `Dog` and then assign it `Animal`.
+
+**MHZ**: this was kinda confusing :\
+
+because Rust has such a strong emphasis on typing, Rust heavily leans on safety and reliability.
+
+Because Rust compiles, the executable is generated at compile time and is essentially machine code.
+the alternative is being interpreted, which means that the language is processed by an `interpreter` at runtime and will be processed on the fly. this has its benefits of being usable anywhere but is much much slower then a compiled .exe
+
+additionally compiled rust executables are already usable on any OS and still incredibly fast.
 
 ### **Stack vs Heap** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
-wex quas exort
+When we start talking about variable values, we will hear about data being stored in the stack or in the heap. 
+
+if you were to imagine a stack of plates. you know that when people typically take plates off the top in order from top to bottom. first one in, last one out. thats essentially what the stack is in Computer logic. 
+
+the stack is a layered collection of in memory addresses that are being processed one at a time in the order it was executed. whereas the heap is the data in memory.
+
+the stack isn't that big to begin with so if you overload the stack, you'll crash the OS and run into a `Stack Overflow` (roll credits)
+
+to access data from the heap, we use pointers in the stack to essentially point to the location of memory from the stack. thus making it immediately accessable.
+
+this type of information will be valuable later once we get into ownership and borrowing.
 
 ## **Data Types** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
-<img id="decor" src="assets/decor.png">
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
+<img id="decor" src="assets/decor.png" style='max-width: 30%;'>
 
-wex quas exort
+for data types we will be talking about scalar and compound data types. Scalar being able to hold only a single value, wheras Compound can hold multiple values. we will look at scalars such as numbers characters and bools. then we will look at the compound data types, tuples and arrays and finally we will take a look at strings.
 
 ### **Number Types** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
-wex quas exort
+**Primative Data Types:**: Data types that are built into the language and are stored on the stack.
+
+**Integer**: INT's are all whole numbers negative or positive. however in the case of rust, if the number IS negative it needs to be classified as a signed integer `i` instead of it being unsigned `u`, meaning that it has a sign associated with the number, negative or positive. the benefits of using an unsigned integer is that the maximum size of the value is doubled.
+so in the case of an 8 bit integer:
+- an unsigned integer `u8` can have a value from 0 to 255.
+- a signed integer `i8` can have a value from -128 to 127.
+
+for Rust we will be using between 8 and 64 bits, if you wanted to use 128 bits you would need to use the nightly version of rust.
+**MHZ:** granted, you prolly will never need to use numbers that big, those values would be incredibly massive.
+
+finally we have `isize` and `usize` which are tied to CPU architecture, typically used with Memory Addressing.
+
+**Floating Point Numbers**: floats are represented as `f32` and `f64`. all float values are signed so there is no unsigned floating point data types in Rust.
+
 
 ### **Characters and Booleans** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
-wex quas exort
+Last two primative data types are Booleans & Characters.
+
+- Booleans are True and False.
+- Characters are letters and numbers. they are ultimately saved as numbers.
+  - As to what numbers are used to save each character depends on if you are using ASCII tables or Unicode tables.
+  - depending on how it is stored, characters are on average about 2 bytes, and can be up to around 4 bytes.
+    - we want to know the byte size of a character because that dictates what character we can use.
+
+<img src="assets/r_fund3.png" style="max-width:50%;">
 
 ### **Arrays and Tuples** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
+- Arrays & Tuples are considered our basic compound data types.
+  - Arrays are a list of one data type.
+  - Tuples are a list of many different data types.
 
-wex quas exort
+In rust, you must define the size of the data prior to initializing the array or tuple.
 
 ### **Strings and String Slices** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ### **String Concatination** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ## **Variables** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
-<img id="decor" src="assets/decor.png">
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
+<img id="decor" src="assets/decor.png" style='max-width: 30%;'>
 
 wex quas exort
 
 ### **Vars** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ### **Casting Data Types** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ### **Variable Mutability** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ### **Scope and Shadowing** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ## **Operators** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
-<img id="decor" src="assets/decor.png">
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
+<img id="decor" src="assets/decor.png" style='max-width: 30%;'>
 
 wex quas exort
 
 ### **Math Operators** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ### **Logic Operators** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ### **Bitwise Operators** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ### **Project Part 1** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ## **Control Flow** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
-<img id="decor" src="assets/decor.png">
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
+<img id="decor" src="assets/decor.png" style='max-width: 30%;'>
 
 wex quas exort
 
 ### **If/Else** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ### **Enum** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ### **Option** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ### **Match Statements** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ### **Match with Enumerations** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ### **If Let** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ### **Rust Loops** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ### **While Loops** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ### **For Loops** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ### **Project Part 2** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ## **Ownership And Borrowing**
-[<img id="undo" src="assets/undo_flat.png">](#index)
-<img id="decor" src="assets/decor.png">
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
+<img id="decor" src="assets/decor.png" style='max-width: 30%;'>
 
 wex quas exort
 
 ### **Memory Management** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ### **Ownership** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ### **Borrowing** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ### **Lifetimes** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ### **Project Part 1** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ## **Functions and Error Handling** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
-<img id="decor" src="assets/decor.png">
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
+<img id="decor" src="assets/decor.png" style='max-width: 30%;'>
 wex quas exort
 
 ### **Functions** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ### **Ownership and Borrowing With Functions** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ### **Closures** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ### **Error Handling** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ### **Result Enum** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ### **Error Propagation** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ## **Data Structures & Traits** 
-[<img id="undo" src="assets/undo_flat.png">](#index) 
-<img id="decor" src="assets/decor.png">
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index) 
+<img id="decor" src="assets/decor.png" style='max-width: 30%;'>
 
 wex quas exort
 
 ### **Data Structures** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ### **Associated Methods** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ### **Traits** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ## **Collections** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
-<img id="decor" src="assets/decor.png">
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
+<img id="decor" src="assets/decor.png" style='max-width: 30%;'>
 
 wex quas exort
 
 ### **Sequences** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ### **Vectors** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ### **Vector Double Ended Queue** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ### **Maps** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ### **Sets** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ## **Generics** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
-<img id="decor" src="assets/decor.png">
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
+<img id="decor" src="assets/decor.png" style='max-width: 30%;'>
 
 wex quas exort
 
 ### **Generic Types** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ### **Constraints** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ## **Concurrency** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
-<img id="decor" src="assets/decor.png">
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
+<img id="decor" src="assets/decor.png" style='max-width: 30%;'>
 
 wex quas exort
 
 ### **Concurrency Hazards** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ### **Creating Threads** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ### **Thread Communication** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ### **Where To Go From Here** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ## **Crates & Modules** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
-<img id="decor" src="assets/decor.png">
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
+<img id="decor" src="assets/decor.png" style='max-width: 30%;'>
 
 wex quas exort
 
 ### **The Project** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ### **Modules** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ### **Cargo.toml** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ### **Cargo Fundamentals** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ### **Publishing Crates** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
 wex quas exort
 
 ## **Conclusion** 
-[<img id="undo" src="assets/undo_flat.png">](#index)
-<img id="decor" src="assets/decor.png">
+[<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
+<img id="decor" src="assets/decor.png" style='max-width: 30%;'>
 
 wex quas exort
 

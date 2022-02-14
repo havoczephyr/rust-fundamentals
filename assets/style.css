@@ -3,21 +3,9 @@
     src: url(hallow.otf);
 }
 
-#undo {
-    max-height: 12pt;
-}
-
 h2 {
     font-family: hallow;
     font-size: 20pt;
     text-align: center;
 }
 
-
-
-#decor {
-    display: block;
-    margin-right: auto;
-    margin-left: auto;
-    max-width: 30%;
-}

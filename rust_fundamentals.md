@@ -276,7 +276,17 @@ Last two primative data types are Booleans & Characters.
   - Arrays are a list of one data type.
   - Tuples are a list of many different data types.
 
+**Please Refer to rust_fund_two for an interactive version of this section.**
+
 In rust, you must define the size of the data prior to initializing the array or tuple.
+that looks as so:
+```rust
+//for tuples:
+let tup_var:(&str, f64, f64) = ("string", 1.001, 2.002)
+
+//for arrays:
+let arr_var:[f32;2] = [3.2, 2.2]
+```
 
 ### **Strings and String Slices** 
 [<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)

@@ -351,7 +351,7 @@ myString = string1 + string2
 ```
 things get complicated here so it might be ideal to come back to this section later once you through ownership and borrowing.
 
-**Please Refer to rust_fund_three for an interactive version of this section.**
+**Please Refer to rust_fund_four for an interactive version of this section.**
 
 ```rust
     let duck = "Duck";
@@ -408,28 +408,111 @@ let _my_unused_variable = 0;
 ### **Casting Data Types** 
 [<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
-wex quas exort
+we're gonna talk about changing the data type of a variable.
+
+**Please Refer to rust_fund_five for an interactive version of this section.**
+
+```rust
+fn main() {
+    let float_thirty_two: f32 = 17.2;
+    let unsigned_eight:u8 =5;
+
+    let result = float_thirty_two / unsigned_eight;
+}
+```
+the compiler will not like this. both values are numerical but the typing is too different for it to process. rust will not do what's called "Implicit Casting" from one data type to another. we need to do Explicit casting.
+
+```rust
+let cast_unsigned_eight = unsigned_eight as f32;
+
+let result = float_thirty_two / cast_unsigned_eight;
+println!("{}", result);
+```
+rust will not have any trouble converting a integer into a character, but will have problems converting a float to a character and will get upset at compile.
+
+```rust
+let number: u8 = 65;
+let letter: char = number as char;
+//this works!
+```
+```rust
+let float: f32 = 65.0;
+let letter: char = number as char;
+//this won't.
+```
+
+lets move onto Mutability!
 
 ### **Variable Mutability** 
 [<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
+now we get to variable mutability.
 
-wex quas exort
+to be mutable, means it's changable.
+by default, variables are **immutable.**
+by putting `mut` into the declaration of a variable, we make the variable **mutable**
+
+```rust
+let mut changable_variable = 500;
+```
+this sits well into rusts ideals of safety concurrency and speed. rust wants to make sure the values you use and the values that will be eventually changed are highly defined.
+
+**MHZ:** this would have been a good time to mention static and constants :\
 
 ### **Scope and Shadowing** 
 [<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
-wex quas exort
+like javascript, variables from the outside, can be used inward into other functions or code blocks but, we cannot go back out. however if you name a variable the same name as a variable on the outside, that is called **shadowing** and the shadowing variable can hold a different value.
+
+```rust
+fn main() {
+    let scope_test = "outer scope";
+    println!("{}", scope_test);
+    {
+        println!("{}", scope_test);
+    }
+
+}
+```
+"outer scope" would print on both ends.
+```rust
+fn main() {
+    let scope_test = "outer scope";
+    println!("{}", scope_test);
+    {
+        let scope_test = "inner scope";
+        println!("{}", scope_test);
+    }
+
+}
+```
+now, scope_test is **shadowed* by the inner scope_test in the code block.
+we can shadow variables within the same scope.
+
+```rust
+    let scope_test = "outer scope";
+    let scope_test = 0;
+```
+I don't recommend shadowing values while you are learning rust, there is alot going on and you can cause yourself a real headache trying to debug a problem caused by shadowing a variable.
 
 ## **Operators** 
 [<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 <img id="decor" src="assets/decor.png" style='max-width: 30%;'>
 
-wex quas exort
+we'll be looking at math/logic and bitwise operators!
 
 ### **Math Operators** 
 [<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
-wex quas exort
+
+<img src="assets/r_fund4.png" style = 'max-width: 50%;'>
+
+computers are math and logic machines and if we look at these simple math questions we got our addition, subtraction, multiplacation and divison these symbols are math operators and we are all very used to these common operators. we additionally have modulus which gives you the remainder of a divided value.
+
+```rust
+let modulus = 18 % 7;
+println!("{}", modulus);
+//the result would be 4
+```
 
 ### **Logic Operators** 
 [<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)

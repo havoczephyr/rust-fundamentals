@@ -514,6 +514,27 @@ println!("{}", modulus);
 //the result would be 4
 ```
 
+one operator that is glaringly missing is the exponent operator, which isn't a problem specifically to rust. there really isn't an exponent operator in most languages. however, there are workarounds.
+
+```rust
+let squared = i32::pow(8,2);
+println!("{}", squared);
+```
+we will get the value of 8 by the **power** of 2
+however we can only use **pow** with integers, for floating points we need to use different tools `f32::powi(x,y)` or `f32::powf(x,y)`<br>
+this was mostly done because the computational power needed to process a float vs processing an integer is somewhat larger. its a much more expensive calculation that reduces its optimal speed.
+
+```rust
+let float_integer = f32::powi(6.5, 3);
+let float_float = f32::powf(6.5, 3.14);
+```
+PEMDAS still matters here in code, the order of operations will take place when processing a mathematical calculation.
+
+```rust
+let order_ops= 8+4*2-(12/3+7)+4;
+```
+the awnser is 9.
+
 ### **Logic Operators** 
 [<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 

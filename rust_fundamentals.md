@@ -272,6 +272,7 @@ Last two primative data types are Booleans & Characters.
 
 ### **Arrays and Tuples** 
 [<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
+
 - Arrays & Tuples are considered our basic compound data types.
   - Arrays are a list of one data type.
   - Tuples are a list of many different data types.
@@ -287,16 +288,84 @@ let tup_var:(&str, f64, f64) = ("string", 1.001, 2.002)
 //for arrays:
 let arr_var:[f32;2] = [3.2, 2.2]
 ```
+you can also destructure tuples and arrays to give values to those numbers like so:
+```rust
+let (name, latitude, longitude) = location;
+    println!("Location name: {}, latitude: {}, longitude:{}", name, latitude, longitude);
+```
+this will preserve the value and allow you to call each value by its given name.
 
 ### **Strings and String Slices** 
 [<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
-wex quas exort
+If your coming from another language you might be a little honked off with the way Rust makes you work with strings. (**MHZ:**It's at least better then Java) remember the pillars of Rust:
+
+- Speed
+- Concurrency
+- and Memory Safety.
+
+there are two types of Strings
+Strings - notated with a capital S
+and String Slices - notated as &str
+
+String | &str
+-- | --
+Vector of u8 Data | Vector of u8 data
+Mutable | Immutable
+Stored on the heap | Can be stored on the heap, stack or embedded in the compiled code.
+
+**Please Refer to rust_fund_three for an interactive version of this section.**
+
+```rust
+let var:&str = "Donald Mallard";
+// this is a string slice
+let var2:String = var.to_string();
+// we convert the string slice into a string.
+```
+while we are talking about string slices here, one of the tricky aspects of rust is string literals, or hard coded strings. these are specifically embedded into the code. in order to assign a string literal to a type of string, we need to call the to_string method on the string literal.
+
+```rust
+let var3:String = "Donald Mallard".to_string();
+```
+*MHZ:* I'm confused on this material, i'll come back to later.
+
+another way we can convert a string_slice to a string is through the from string method:
+```rust
+let var4:String = String::from(s:"Donald Mallard");
+```
+alternatively, if we wanted to convert a string to a string slice
+
+```rust
+let var4:&String = &var
+let var5: var.as_str();
+```
+this goes back to pointers when we store data on the heap, we use a pointer in the stack to locate the data on the heap. there are a couple of special symbols we use with pointers. which are asterisks(*) and ampersands(&).
 
 ### **String Concatination** 
 [<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
-wex quas exort
+in some languages, when we want to combine strings together we perform some sort of addition formula which binds the two strings into a single line. this is called concatenation.
+
+```js
+myString = string1 + string2
+```
+things get complicated here so it might be ideal to come back to this section later once you through ownership and borrowing.
+
+**Please Refer to rust_fund_three for an interactive version of this section.**
+
+```rust
+    let duck = "Duck";
+    let airline = "Airlines";
+    //this is one way of combining string slices together.
+    let airline_name = [duck, " ", airline].concat();
+```
+by using `concat()` we can combine both string slices into a single string.
+we can also use `format!()`
+
+```rust
+let airline_name_two = format!("{} {}", duck, airline);
+```
+to accomplish similar concatenation.
 
 ## **Variables** 
 [<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)

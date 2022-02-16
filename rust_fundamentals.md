@@ -538,8 +538,40 @@ the awnser is 9.
 ### **Logic Operators** 
 [<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
-wex quas exort
+the next operators are logic operators where we test one value to another, in other words, comparitors.
 
+```rust
+let are_equal_is_true = 1 == 1;
+let are equal_is_false = 1 == 2;
+```
+in each case we are trying to see if 1 = 1, which is true, and 1 = 2, which is false.
+
+`==` is used to compare values. next we will look at `!` which is often called bang. but its usually paired with comparitors to equate inequality.
+
+```rust
+let are_not_equal = 1 != 2;
+```
+in this case, 1 does not equal 2, and thus it is true.
+
+```rust
+let is_true = true;
+let is_false = !is_true;
+```
+so in this case, the boolean `is_true` is true, so by making `is_false = !is_true;` it will be the opposite of `is_true`. which by proxy makes it `false`.
+
+we can also use the logical AND & OR operators.
+
+<img src="assets/r_fund5.png" style="max-width:50%;">
+
+and and or are used very often even in our own daily lives. If we needed to fly out of an Airport, boarding security would require us to have both our Boarding Pass **and** ID. if we didn't have a boarding pass, but had our ID, or had our boarding pass, but didn't have our ID. that would all be the same as not having either. alternatively if we use the logical or, where we are using our passport **or** our drivers license to verify ID, we can use both or just one to be true.
+
+```rust
+let have_boarding_pass = true;
+let have_id = true;
+let can_board = have_boarding_pass && have_id;
+```
+by using `&&` we perform the logical AND operation between `have_boarding_pass` and `have_id` and therefore, the result is: `true`.
+if we change the value of `have_boarding_pass` to  `false`. then `can_board` will result in `false`.
 ### **Bitwise Operators** 
 [<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 

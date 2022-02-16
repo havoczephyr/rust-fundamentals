@@ -367,16 +367,43 @@ let airline_name_two = format!("{} {}", duck, airline);
 ```
 to accomplish similar concatenation.
 
+```rust
+let mut slogan = String::new();
+    slogan.push_str("We hit the ground");
+    slogan.push(' ');
+    slogan = slogan + "every time";
+```
+
+
 ## **Variables** 
 [<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 <img id="decor" src="assets/decor.png" style='max-width: 30%;'>
 
-wex quas exort
+- We're gonna look at how to declare a variable.
+- We're gonna look at how to change a variable.
+- we'll look into var immutability.
+- and variable scope and shadowing.
+
 
 ### **Vars** 
 [<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
 
-wex quas exort
+we can think of a variable as a container for a piece of data. we give it a name, what type of data will be inside of it. then invoke it later when needed.
+
+```rust
+//the let keyword tells the rust compiler that we are declaring a variable.
+let my_variable_name:u32 = 0;
+// you can omit the type of data it is, and rust will ascertain the type from the value you enter.
+let my_inferred_variable = 0;
+// in vsc, if you hover over the value, it will tell you that it is an int value.
+// you'll notice that rust will asign a value like 0 as a signed 32bit integer (i32). this is the default value rust will give integers.
+let my_inferred_variable = 1.0;
+// in this case, rust will assign the value as a 64bit float. f64.
+let my_inferred_variable = 1_i8;
+// at least with numbers, this is another way you can imply what kind of value it is.
+let _my_unused_variable = 0;
+// if your going to have a variable in your code that is not used, affix an "_" to prevent the compiler from getting upset about it.
+```
 
 ### **Casting Data Types** 
 [<img id="undo" src="assets/undo_flat.png" style='max-height: 12pt;'>](#index)
